@@ -7,10 +7,9 @@ const client = new Client({
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     },
     authStrategy: new LocalAuth()
-});
-
-client.on('qr', (qr) => {
-    qrcode.generate(qr, { small: true });
+        client.on('qr', (qr) => {
+    // أضف `, { scale: 1 }` بعد `{ small: true }`
+    qrcode.generate(qr, { small: true, scale: 1 });
 });
 
 client.on('ready', () => {
