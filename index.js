@@ -4,12 +4,14 @@ const qrcode = require('qrcode-terminal');
 const client = new Client({
     puppeteer: {
         executablePath: '/usr/bin/chromium',
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: ['--no-sandbox']
     },
     authStrategy: new LocalAuth()
-        client.on('qr', (qr) => {
-    // أضف `, { scale: 1 }` بعد `{ small: true }`
-    qrcode.generate(qr, { small: true, scale: 1 });
+});
+
+client.on('qr', (qr) => {
+    // هذا التعديل يجعل الباركود صغيراً جداً
+    qrcode.generate(qr, { small: true });
 });
 
 client.on('ready', () => {
